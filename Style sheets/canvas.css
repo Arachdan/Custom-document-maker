@@ -1,0 +1,8 @@
+.inactive_canvas {
+    display: none;
+}
+
+.active_canvas {
+    display: initial;
+    border: 1px solid blue;
+}

@@ -1,0 +1,1 @@
+document.getElementsByClassName('select_document_type')[0].addEventListener('change', showCanvas);
