@@ -1,0 +1,7 @@
+.inactive_cv_settings {
+    display: none;
+}
+
+.active_cv_settings {
+    display: initial;
+}
