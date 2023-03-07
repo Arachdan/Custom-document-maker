@@ -93,7 +93,40 @@
                               </h2>
                               <div id="education_collapse" class="accordion-collapse collapse" aria-labelledby="education_heading">
                                 <div class="accordion-body">
-                                    
+                                    <div class="mb-2">
+                                      <input type="checkbox" class="btn-check" id="education_check_button" checked autocomplete="off">
+                                      <label class="btn btn-outline-success" id="education_check_button_label" for="education_check_button">Active</label>
+                                    </div>
+                                    <hr/>
+                                    <div class="form-floating mb-2">
+                                      <input type="text" class="form-control school_name_input" id="school_name_input" placeholder="School/University name">
+                                      <label for="school_name_input">School/University name</label>
+                                    </div>
+                                    <div class="form-floating mb-2">
+                                      <input type="text" class="form-control school_city_input" id="school_city_input" placeholder="City">
+                                      <label for="school_city_input">City</label>
+                                    </div>
+                                    <div class="input-group mb-2">
+                                      <div class="form-floating">
+                                        <input type="month" class="form-control school_time_input" id="school_start_time_input" placeholder="Start date">
+                                        <label for="school_city_input">Start date</label>
+                                      </div>
+                                      <div class="form-floating">
+                                        <input type="month" class="form-control school_time_input" id="school_end_time_input" placeholder="End date">
+                                        <label for="school_city_input">End date</label>
+                                      </div>
+                                    </div>
+                                    <div class="form-floating mb-2">
+                                      <textarea class="form-control school_additional_info_input" placeholder="Additional info" id="school_additional_info_input"></textarea>
+                                      <label for="school_additional_info_input">Additional info</label>                                    
+                                    </div>
+                                    <div class="mb-3">
+                                      <button type="button" class="btn btn-secondary add_school_button">Add school</button>
+                                    </div>
+                                    <hr/>
+                                    <div class="schools_list">
+
+                                    </div>                          
                                 </div>
                               </div>
                             </div>
@@ -191,5 +224,6 @@
         <script src="Scripts/showCanvas.js"></script>
         <script src="Scripts/event_listeners.js"></script>
         <script src="Scripts/cv_settings_events.js"></script>
+        <script src="Scripts/school_class.js"></script>
     </body>
 </html>

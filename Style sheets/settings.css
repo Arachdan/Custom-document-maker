@@ -5,3 +5,7 @@
 .active_cv_settings {
     display: initial;
 }
+
+.delete_school_button_container {
+    background-color: #f75145;
+}
