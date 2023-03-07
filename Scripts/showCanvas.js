@@ -1,8 +1,5 @@
 const document_type_selector = document.getElementsByClassName('select_document_type')[0];
 
-const canvas = document.getElementsByClassName('canvas')[0];
-const ctx = canvas.getContext("2d");
-
 const cv_settings = document.getElementsByClassName('cv_settings')[0];
 
 function showCanvas() {
@@ -10,6 +7,7 @@ function showCanvas() {
         case 'cv':
             activateCanvas();
             activateCVSettings();
+            canvas_obj.loadCVContent.all();
 
             break;
         case 'none':
