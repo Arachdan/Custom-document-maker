@@ -37,31 +37,47 @@ const canvas_obj = new function() {
         this.setY('small');
     }
     this.printText = (label, text) => {
-        this.setY();
-        this.ctx.fillText(`${label}: ${text}`, 10, this.y);
+        if(label === '#none') {
+            this.setY();
+            this.ctx.fillText(text, 10, this.y);
+        }
+        else {
+            this.setY();
+            this.ctx.fillText(`${label}: ${text}`, 10, this.y);
+        }
     }
+
+    this.reloadCVContent = () => {
+        this.ctx.clearRect(0, 0, canvas_obj.width, canvas_obj.height);
+        this.loadCVContent.all();
+    }
+
     this.loadCVContent = {
         personal_info: () => {
             this.resetY();
 
-            this.printText('First name and last name', cv_settings_bank.name_and_lastname);
-            this.printText('Professional title', cv_settings_bank.professional_title);
-            this.printText('Phone number', cv_settings_bank.phone_nr);
-            this.printText('E-mail', cv_settings_bank.email);
+            this.printText('#none', cv_settings_bank.name_and_lastname);
+            this.setY('small');
+            
+            if(cvProfessionalTitleCheck()) this.printText('Professional title', cv_settings_bank.professional_title);
+            if(cvPhoneNrCheck()) this.printText('Phone number', cv_settings_bank.phone_nr);
+            if(cvEmailCheck()) this.printText('E-mail', cv_settings_bank.email);
 
             this.setBreak();
         },
 
         education: () => {
-            this.printHeading('Education');
+            if(cvEducationCheck()) {
+                this.printHeading('Education');
 
-            for(i = 0; i < cv_settings_bank.schools.length; i++) {
-                this.printText('School/University name', cv_settings_bank.schools[i].name);
-                this.printText('City', cv_settings_bank.schools[i].city);
-                this.printText('Start and end date', cv_settings_bank.schools[i].time);
-                this.printText('Additional info', cv_settings_bank.schools[i].additional_info);
+                for(i = 0; i < cv_settings_bank.schools.length; i++) {
+                    this.printText('School/University name', cv_settings_bank.schools[i].name);
+                    this.printText('City', cv_settings_bank.schools[i].city);
+                    this.printText('Start and end date', cv_settings_bank.schools[i].time);
+                    this.printText('Additional info', cv_settings_bank.schools[i].additional_info);
 
-                this.setY();
+                    this.setY();
+                }
             }
         },
 

@@ -1,25 +1,21 @@
 function updateNameAndLastnameOnCVCanvas() {
     cv_settings_bank.name_and_lastname = document.getElementById('name_and_lastname_input').value;
-    canvas_obj.ctx.clearRect(0, 0, canvas_obj.width, canvas_obj.height);
-    canvas_obj.loadCVContent.all();
+    canvas_obj.reloadCVContent();
 }
 
 function updateProfessionalTitleOnCVCanvas() {
     cv_settings_bank.professional_title = document.getElementById('professional_title_input').value;
-    canvas_obj.ctx.clearRect(0, 0, canvas_obj.width, canvas_obj.height);
-    canvas_obj.loadCVContent.all();
+    canvas_obj.reloadCVContent();
 }
 
 function updatePhoneNrOnCVCanvas() {
     cv_settings_bank.phone_nr = document.getElementById('phone_number_input').value;
-    canvas_obj.ctx.clearRect(0, 0, canvas_obj.width, canvas_obj.height);
-    canvas_obj.loadCVContent.all();
+    canvas_obj.reloadCVContent();
 }
 
 function updateEmailOnCVCanvas() {
     cv_settings_bank.email = document.getElementById('email_input').value;
-    canvas_obj.ctx.clearRect(0, 0, canvas_obj.width, canvas_obj.height);
-    canvas_obj.loadCVContent.all();
+    canvas_obj.reloadCVContent();
 }
 
 function addSchool() {
@@ -49,8 +45,7 @@ function addSchool() {
 
     cv_settings_bank.schools.push(school);
 
-    canvas_obj.ctx.clearRect(0, 0, canvas_obj.width, canvas_obj.height);
-    canvas_obj.loadCVContent.all();
+    canvas_obj.reloadCVContent();
 
     document.getElementsByClassName('schools_list')[0].innerHTML = '';
     for(i = 0; i < cv_settings_bank.schools.length; i++) {
