@@ -142,7 +142,44 @@
                               </h2>
                               <div id="work_experience_collapse" class="accordion-collapse collapse" aria-labelledby="work_experience_heading">
                                 <div class="accordion-body">
-                                    
+                                  <div class="mb-2">
+                                    <input type="checkbox" class="btn-check" id="work_experience_check_button" checked autocomplete="off">
+                                    <label class="btn btn-outline-success" id="work_experience_check_button_label" for="work_experience_check_button">Active</label>
+                                  </div>
+                                  <hr/>
+                                  <div class="form-floating mb-2">
+                                    <input type="text" class="form-control job_title_input" id="job_title_input" placeholder="Job title">
+                                    <label for="job_title_input">Job title</label>
+                                  </div>
+                                  <div class="form-floating mb-2">
+                                    <input type="text" class="form-control employer_input" id="employer_input" placeholder="Employer">
+                                    <label for="employer_input">Employer</label>
+                                  </div>
+                                  <div class="form-floating mb-2">
+                                    <input type="text" class="form-control work_city_input" id="work_city_input" placeholder="City">
+                                    <label for="work_city_input">City</label>
+                                  </div>
+                                  <div class="input-group mb-2">
+                                    <div class="form-floating">
+                                      <input type="month" class="form-control work_time_input" id="work_start_time_input" placeholder="Start date">
+                                      <label for="work_city_input">Start date</label>
+                                    </div>
+                                    <div class="form-floating">
+                                      <input type="month" class="form-control work_time_input" id="work_end_time_input" placeholder="End date">
+                                      <label for="work_city_input">End date</label>
+                                    </div>
+                                  </div>
+                                  <div class="form-floating mb-2">
+                                    <textarea class="form-control work_additional_info_input" placeholder="Additional info" id="work_additional_info_input"></textarea>
+                                    <label for="work_additional_info_input">Additional info</label>                                    
+                                  </div>
+                                  <div class="mb-3">
+                                    <button type="button" class="btn btn-secondary add_work_button">Add work</button>
+                                  </div>
+                                  <hr/>
+                                  <div class="works_list">
+
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -158,7 +195,11 @@
                               </h2>
                               <div id="skills_collapse" class="accordion-collapse collapse" aria-labelledby="skills_heading">
                                 <div class="accordion-body">
-                                    
+                                  <div class="mb-2">
+                                    <input type="checkbox" class="btn-check" id="skills_check_button" checked autocomplete="off">
+                                    <label class="btn btn-outline-success" id="skills_check_button_label" for="skills_check_button">Active</label>
+                                  </div>
+                                  <hr/>
                                 </div>
                               </div>
                             </div>
@@ -226,5 +267,6 @@
         <script src="Scripts/event_listeners.js"></script>
         <script src="Scripts/cv_settings_events.js"></script>
         <script src="Scripts/school_class.js"></script>
+        <script src="Scripts/work_class.js"></script>
     </body>
 </html>

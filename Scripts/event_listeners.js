@@ -15,3 +15,7 @@ cv_email_checkbox.addEventListener('click', () => {
 cv_education_check_button.addEventListener('click', () => {
     canvas_obj.reloadCVContent();
 });
+
+cv_work_experience_check_button.addEventListener('click', () => {
+    canvas_obj.reloadCVContent();
+});

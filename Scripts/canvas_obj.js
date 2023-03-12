@@ -5,11 +5,11 @@ const canvas_obj = new function() {
     this.width = this.canvas.width;
     this.height = this.canvas.height;
 
-    this.setFont = (size, style) => {
-        this.ctx.font = `${size}px ${style}`;
+    this.setFont = (weight, style, size, family) => {
+        this.ctx.font = `${weight} ${style} ${size}px ${family}`;
         this.font_size = size;
     };
-    this.setFont(30, 'Arial');
+    this.setFont('normal', 'normal', 30, 'Arial');
 
     this.y = 0;
     this.y_break = 5;
@@ -28,22 +28,79 @@ const canvas_obj = new function() {
     this.printHeading = (heading) => {
         this.setY();
 
-        this.setFont(50, 'Copperplate');
+        this.setFont('normal', 'normal', 50, 'Copperplate');
         
         this.ctx.fillText(heading, 10, this.y);
 
-        this.setFont(30, 'Arial');
+        this.setFont('normal', 'normal', 30, 'Arial');
 
         this.setY('small');
     }
     this.printText = (label, text) => {
+        let x = 10;
+        const x_step = 10;
+
+        let start_of_printing = true;
+
+        function textWidthCheckAndPrinting() {
+            let words = [];
+
+            if(canvas_obj.ctx.measureText(`${label}: ${text}`).width < canvas_obj.width) {
+                canvas_obj.setFont('bold', 'italic', 30, 'Arial');
+
+                canvas_obj.ctx.fillText(`${label}: `, x, canvas_obj.y);
+                x += canvas_obj.ctx.measureText(`${label}: `).width;
+
+                canvas_obj.setFont('normal', 'normal', 30, 'Arial');
+
+                canvas_obj.ctx.fillText(text, x, canvas_obj.y);
+            }
+            else if(canvas_obj.ctx.measureText(`${label}: ${text}`).width >= canvas_obj.width) {
+                let word_start = 0;
+                for(let char_pos = 0; char_pos <= text.length; char_pos++) {
+                    if(text[char_pos] === ' ') {
+                        words.push(text.slice(word_start, char_pos));
+                        char_pos++;
+                        word_start = char_pos;
+                    }
+                    else if(char_pos === text.length) words.push(
+                        text.slice(word_start, char_pos)
+                    );
+                }
+
+                for(word_nr = 0; word_nr < words.length; word_nr++) {
+                    if(start_of_printing === true) {
+                        canvas_obj.setFont('bold', 'italic', 30, 'Arial');
+                        canvas_obj.ctx.fillText(`${label}: `, x, canvas_obj.y);
+                        start_of_printing = false;
+                        x += canvas_obj.ctx.measureText(`${label}: `).width;
+                        canvas_obj.setFont('normal', 'normal', 30, 'Arial');
+                    }
+
+                    if(x + canvas_obj.ctx.measureText(words[word_nr]).width + x_step >= canvas_obj.width) {
+                        canvas_obj.setY();
+                        x = 10;
+                        canvas_obj.ctx.fillText(words[word_nr], x, canvas_obj.y);
+
+                        x += canvas_obj.ctx.measureText(words[word_nr]).width + x_step;
+                    }
+                    else {
+                        canvas_obj.ctx.fillText(words[word_nr], x, canvas_obj.y);
+
+                        x += canvas_obj.ctx.measureText(words[word_nr]).width + x_step;
+                    }
+                }
+            }
+            else alert('State: something went wrong...');
+        }
+
         if(label === '#none') {
             this.setY();
             this.ctx.fillText(text, 10, this.y);
         }
         else {
             this.setY();
-            this.ctx.fillText(`${label}: ${text}`, 10, this.y);
+            textWidthCheckAndPrinting();
         }
     }
 
@@ -62,12 +119,12 @@ const canvas_obj = new function() {
             if(cvProfessionalTitleCheck()) this.printText('Professional title', cv_settings_bank.professional_title);
             if(cvPhoneNrCheck()) this.printText('Phone number', cv_settings_bank.phone_nr);
             if(cvEmailCheck()) this.printText('E-mail', cv_settings_bank.email);
-
-            this.setBreak();
         },
 
         education: () => {
             if(cvEducationCheck()) {
+                this.setBreak();
+
                 this.printHeading('Education');
 
                 for(i = 0; i < cv_settings_bank.schools.length; i++) {
@@ -76,7 +133,25 @@ const canvas_obj = new function() {
                     this.printText('Start and end date', cv_settings_bank.schools[i].time);
                     this.printText('Additional info', cv_settings_bank.schools[i].additional_info);
 
-                    this.setY();
+                    if(i + 1 !== cv_settings_bank.schools.length) this.setY();
+                }
+            }
+        },
+
+        work_experience: () => {
+            if(cvWorkExperienceCheck()) {
+                this.setBreak();
+
+                this.printHeading('Work experience');
+
+                for(i = 0; i < cv_settings_bank.work_experience.length; i++) {
+                    this.printText('Job title', cv_settings_bank.work_experience[i].job_title);
+                    this.printText('Employer', cv_settings_bank.work_experience[i].employer);
+                    this.printText('City', cv_settings_bank.work_experience[i].city);
+                    this.printText('Start and end date', cv_settings_bank.work_experience[i].time);
+                    this.printText('Additional info', cv_settings_bank.work_experience[i].additional_info);
+
+                    if(i + 1 !== cv_settings_bank.work_experience.length) this.setY();
                 }
             }
         },
@@ -84,6 +159,7 @@ const canvas_obj = new function() {
         all: () => {
             this.loadCVContent.personal_info();
             this.loadCVContent.education();
+            this.loadCVContent.work_experience();
         }
     };
 };

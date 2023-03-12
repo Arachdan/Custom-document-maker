@@ -4,5 +4,6 @@ const cv_settings_bank = {
     phone_nr: document.getElementById('phone_number_input').value,
     email: document.getElementById('email_input').value,
 
-    schools: []
+    schools: [],
+    work_experience: []
 }
