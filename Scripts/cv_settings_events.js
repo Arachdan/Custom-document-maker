@@ -129,25 +129,23 @@ document.getElementById('professional_title_input').addEventListener('input', up
 document.getElementById('phone_number_input').addEventListener('input', updatePhoneNrOnCVCanvas);
 document.getElementById('email_input').addEventListener('input', updateEmailOnCVCanvas);
 
-const cv_education_check_button_label = document.getElementById('education_check_button_label');
-cv_education_check_button.addEventListener('change', () => {
-    if(cv_education_check_button.checked === true) {
-        cv_education_check_button_label.innerText = 'Active';
-    }
-    else {
-        cv_education_check_button_label.innerText = 'Inactive';
-    }
-});
+function allowActivationAndDeactivationOfAModuleInCV(module_name) {
+    const check_button = document.getElementById(`${module_name}_check_button`);
+    const check_button_label = document.getElementById(`${module_name}_check_button_label`);
 
-const cv_work_experience_check_button_label = document.getElementById('work_experience_check_button_label');
-cv_work_experience_check_button.addEventListener('change', () => {
-    if(cv_work_experience_check_button.checked === true) {
-        cv_work_experience_check_button_label.innerText = 'Active';
-    }
-    else {
-        cv_work_experience_check_button_label.innerText = 'Inactive';
-    }
-});
+    check_button.addEventListener('change', () => {
+        if(check_button.checked === true) {
+            check_button_label.innerText = 'Active';
+        }
+        else {
+            check_button_label.innerText = 'Inactive';
+        }
+    });
+
+    check_button.addEventListener('click', () => {
+        canvas_obj.reloadCVContent();
+    });
+}
 
 document.getElementsByClassName('add_school_button')[0].addEventListener('click', addSchool);
 document.getElementsByClassName('add_work_button')[0].addEventListener('click', addWork);

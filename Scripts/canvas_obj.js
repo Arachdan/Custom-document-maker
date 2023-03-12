@@ -122,7 +122,7 @@ const canvas_obj = new function() {
         },
 
         education: () => {
-            if(cvEducationCheck()) {
+            if(cvModuleCheck('education')) {
                 this.setBreak();
 
                 this.printHeading('Education');
@@ -139,7 +139,7 @@ const canvas_obj = new function() {
         },
 
         work_experience: () => {
-            if(cvWorkExperienceCheck()) {
+            if(cvModuleCheck('work_experience')) {
                 this.setBreak();
 
                 this.printHeading('Work experience');
@@ -156,10 +156,29 @@ const canvas_obj = new function() {
             }
         },
 
+        skills: () => {
+            if(cvModuleCheck('skills')) {
+                this.setBreak();
+
+                this.printHeading('Skills');
+
+                /* for(i = 0; i < cv_settings_bank.work_experience.length; i++) {
+                    this.printText('Job title', cv_settings_bank.work_experience[i].job_title);
+                    this.printText('Employer', cv_settings_bank.work_experience[i].employer);
+                    this.printText('City', cv_settings_bank.work_experience[i].city);
+                    this.printText('Start and end date', cv_settings_bank.work_experience[i].time);
+                    this.printText('Additional info', cv_settings_bank.work_experience[i].additional_info);
+
+                    if(i + 1 !== cv_settings_bank.work_experience.length) this.setY();
+                } */
+            }
+        },
+
         all: () => {
             this.loadCVContent.personal_info();
             this.loadCVContent.education();
             this.loadCVContent.work_experience();
+            this.loadCVContent.skills();
         }
     };
 };
