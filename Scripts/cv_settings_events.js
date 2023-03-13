@@ -18,6 +18,11 @@ function updateEmailOnCVCanvas() {
     canvas_obj.reloadCVContent();
 }
 
+function updateMediaOnCVCanvas() {
+    cv_settings_bank.media = document.getElementById('media_input').value;
+    canvas_obj.reloadCVContent();
+}
+
 function addSchool() {
     function bestowDeletingSchoolFunctionality() {
         for(i = 0; i < cv_settings_bank.schools.length; i++) {
@@ -128,6 +133,7 @@ document.getElementById('name_and_lastname_input').addEventListener('input', upd
 document.getElementById('professional_title_input').addEventListener('input', updateProfessionalTitleOnCVCanvas);
 document.getElementById('phone_number_input').addEventListener('input', updatePhoneNrOnCVCanvas);
 document.getElementById('email_input').addEventListener('input', updateEmailOnCVCanvas);
+document.getElementById('media_input').addEventListener('input', updateMediaOnCVCanvas);
 
 function allowActivationAndDeactivationOfAModuleInCV(module_name) {
     const check_button = document.getElementById(`${module_name}_check_button`);

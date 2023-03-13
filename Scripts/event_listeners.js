@@ -11,3 +11,7 @@ cv_phone_number_checkbox.addEventListener('click', () => {
 cv_email_checkbox.addEventListener('click', () => {
     canvas_obj.reloadCVContent();
 });
+
+cv_media_checkbox.addEventListener('click', () => {
+    canvas_obj.reloadCVContent();
+});

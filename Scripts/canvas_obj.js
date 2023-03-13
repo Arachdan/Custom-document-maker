@@ -116,9 +116,10 @@ const canvas_obj = new function() {
             this.printText('#none', cv_settings_bank.name_and_lastname);
             this.setY('small');
             
-            if(cvProfessionalTitleCheck()) this.printText('Professional title', cv_settings_bank.professional_title);
-            if(cvPhoneNrCheck()) this.printText('Phone number', cv_settings_bank.phone_nr);
-            if(cvEmailCheck()) this.printText('E-mail', cv_settings_bank.email);
+            if(cvPersonalInfoElementCheck('professional_title')) this.printText('Professional title', cv_settings_bank.professional_title);
+            if(cvPersonalInfoElementCheck('phone_number')) this.printText('Phone number', cv_settings_bank.phone_nr);
+            if(cvPersonalInfoElementCheck('email')) this.printText('E-mail', cv_settings_bank.email);
+            if(cvPersonalInfoElementCheck('media')) this.printText('Media', cv_settings_bank.media);
         },
 
         education: () => {

@@ -3,6 +3,7 @@ const cv_settings_bank = {
     professional_title: document.getElementById('professional_title_input').value,
     phone_nr: document.getElementById('phone_number_input').value,
     email: document.getElementById('email_input').value,
+    media: document.getElementById('media_input').value,
 
     schools: [],
     work_experience: []
