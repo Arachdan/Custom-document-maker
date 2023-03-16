@@ -129,6 +129,53 @@ function addWork() {
     document.getElementById('work_additional_info_input').value = '';
 }
 
+function addSkill() {
+    function bestowDeletingSkillFunctionality() {
+        for(i = 0; i < cv_settings_bank.skills.length; i++) {
+            let i_var = i;
+            const deletetion_range = 1;
+            document.getElementsByClassName('delete_skill_button')[i].onclick = () => {
+                document.getElementsByClassName('skill_list_item')[i_var].remove();
+                cv_settings_bank.skills.splice(i_var, deletetion_range);
+    
+                bestowDeletingSkillFunctionality();
+            };
+        }
+
+        canvas_obj.ctx.clearRect(0, 0, canvas_obj.width, canvas_obj.height);
+        canvas_obj.loadCVContent.all();
+    }
+
+    let skill = new Skill(
+        document.getElementById('skill_name_input').value,
+        document.getElementById('skill_level_input').value,
+        document.getElementById('skill_level_bar_range').value
+    );
+
+    cv_settings_bank.skills.push(skill);
+
+    canvas_obj.reloadCVContent();
+
+    document.getElementsByClassName('skills_list')[0].innerHTML = '';
+    for(i = 0; i < cv_settings_bank.skills.length; i++) {
+        document.getElementsByClassName('skills_list')[0].innerHTML += (`
+            <ul class="list-group list-group-horizontal skill_list_item mb-1">
+                <li class="list-group-item w-75">
+                    <big>${cv_settings_bank.skills[i].skill_name}</big>
+                </li>
+                <li class="list-group-item w-25 delete_button_container">
+                    <button type="button" class="btn-close delete_skill_button btn btn-danger" aria-label="Close"></button>
+                </li>
+            </ul>
+        `);
+    }
+
+    bestowDeletingSkillFunctionality();
+
+    document.getElementById('skill_name_input').value = '';
+    document.getElementById('skill_level_input').value = '';
+}
+
 document.getElementById('name_and_lastname_input').addEventListener('input', updateNameAndLastnameOnCVCanvas);
 document.getElementById('professional_title_input').addEventListener('input', updateProfessionalTitleOnCVCanvas);
 document.getElementById('phone_number_input').addEventListener('input', updatePhoneNrOnCVCanvas);
@@ -155,3 +202,4 @@ function allowActivationAndDeactivationOfAModuleInCV(module_name) {
 
 document.getElementsByClassName('add_school_button')[0].addEventListener('click', addSchool);
 document.getElementsByClassName('add_work_button')[0].addEventListener('click', addWork);
+document.getElementsByClassName('add_skill_button')[0].addEventListener('click', addSkill);

@@ -96,12 +96,49 @@ const canvas_obj = new function() {
 
         if(label === '#none') {
             this.setY();
-            this.ctx.fillText(text, 10, this.y);
+            this.ctx.fillText(text, x, this.y);
         }
         else {
             this.setY();
             textWidthCheckAndPrinting();
         }
+    }
+
+    this.printBarWithText = (text, bar_value) => {
+        let x = 10;
+
+        this.setY();
+
+        canvas_obj.setFont('bold', 'italic', 30, 'Arial');
+
+        this.ctx.fillText(`${text}: `, x, this.y);
+        x += canvas_obj.ctx.measureText(`${text}: `).width;
+        
+        canvas_obj.setFont('normal', 'normal', 30, 'Arial');
+
+        const x_border_bar = x - 4;
+        const y_border_bar = this.y - 17;
+        const x_container_bar = x - 2;
+        const y_container_bar = this.y - 15;
+        const y_level_bar = this.y - 13;
+        const x_level_bar = x;
+
+
+        const border_bar_height = 18;
+        const border_bar_width = 5 * 20 + 4 + 4;
+        const container_bar_height = 14;
+        const container_bar_width = 5 * 20 + 4;
+        const level_bar_height = 10;
+        const level_bar_width = bar_value * 20;
+
+        this.ctx.fillStyle = 'black';
+        this.ctx.fillRect(x_border_bar, y_border_bar, border_bar_width, border_bar_height);
+
+        this.ctx.fillStyle = 'white';
+        this.ctx.fillRect(x_container_bar, y_container_bar, container_bar_width, container_bar_height);
+
+        this.ctx.fillStyle = 'black'; 
+        this.ctx.fillRect(x_level_bar, y_level_bar, level_bar_width, level_bar_height);
     }
 
     this.reloadCVContent = () => {
@@ -116,10 +153,10 @@ const canvas_obj = new function() {
             this.printText('#none', cv_settings_bank.name_and_lastname);
             this.setY('small');
             
-            if(cvPersonalInfoElementCheck('professional_title')) this.printText('Professional title', cv_settings_bank.professional_title);
-            if(cvPersonalInfoElementCheck('phone_number')) this.printText('Phone number', cv_settings_bank.phone_nr);
-            if(cvPersonalInfoElementCheck('email')) this.printText('E-mail', cv_settings_bank.email);
-            if(cvPersonalInfoElementCheck('media')) this.printText('Media', cv_settings_bank.media);
+            if(cvElementCheck('professional_title')) this.printText('Professional title', cv_settings_bank.professional_title);
+            if(cvElementCheck('phone_number')) this.printText('Phone number', cv_settings_bank.phone_nr);
+            if(cvElementCheck('email')) this.printText('E-mail', cv_settings_bank.email);
+            if(cvElementCheck('media')) this.printText('Media', cv_settings_bank.media);
         },
 
         education: () => {
@@ -163,15 +200,13 @@ const canvas_obj = new function() {
 
                 this.printHeading('Skills');
 
-                /* for(i = 0; i < cv_settings_bank.work_experience.length; i++) {
-                    this.printText('Job title', cv_settings_bank.work_experience[i].job_title);
-                    this.printText('Employer', cv_settings_bank.work_experience[i].employer);
-                    this.printText('City', cv_settings_bank.work_experience[i].city);
-                    this.printText('Start and end date', cv_settings_bank.work_experience[i].time);
-                    this.printText('Additional info', cv_settings_bank.work_experience[i].additional_info);
+                for(i = 0; i < cv_settings_bank.skills.length; i++) {
+                    this.printText('Skill name', cv_settings_bank.skills[i].skill_name);
+                    if(cv_settings_bank.skills[i].skill_level !== 'none') this.printText('Skill level', cv_settings_bank.skills[i].skill_level);
+                    if(cv_settings_bank.skills[i].skill_level_bar !== 'none') this.printBarWithText('Skill level bar', cv_settings_bank.skills[i].skill_level_bar);
 
-                    if(i + 1 !== cv_settings_bank.work_experience.length) this.setY();
-                } */
+                    if(i + 1 !== cv_settings_bank.skills.length) this.setY();
+                }
             }
         },
 

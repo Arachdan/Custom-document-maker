@@ -133,9 +133,7 @@
                                       <button type="button" class="btn btn-secondary add_school_button">Add school</button>
                                     </div>
                                     <hr/>
-                                    <div class="schools_list">
-
-                                    </div>                          
+                                    <div class="schools_list"></div>                          
                                 </div>
                               </div>
                             </div>
@@ -186,9 +184,7 @@
                                     <button type="button" class="btn btn-secondary add_work_button">Add work</button>
                                   </div>
                                   <hr/>
-                                  <div class="works_list">
-
-                                  </div>
+                                  <div class="works_list"></div>
                                 </div>
                               </div>
                             </div>
@@ -209,6 +205,31 @@
                                     <label class="btn btn-outline-success" id="skills_check_button_label" for="skills_check_button">Active</label>
                                   </div>
                                   <hr/>
+                                  <div class="form-floating mb-2">
+                                    <input type="text" class="form-control skill_name_input" id="skill_name_input" placeholder="Skill name">
+                                    <label for="skill_name_input">Skill name</label>
+                                  </div>
+                                  <div class="input-group mb-2">
+                                    <div class="input-group-text">
+                                        <input class="form-check-input skill_level_checkbox" type="checkbox" checked>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control skill_level_input" id="skill_level_input" placeholder="Skill level">
+                                        <label for="skill_level_input">Skill level</label>
+                                    </div>
+                                  </div>
+                                  <div class="input-group mb-2">
+                                    <div class="input-group-text">
+                                      <input class="form-check-input skill_level_bar_checkbox" type="checkbox" checked>
+                                     </div>
+                                    <span class="input-group-text w-75">Skill level bar (1-5)</span>
+                                    <input type="range" class="form-range" min="1" max="5" value="3" id="skill_level_bar_range">
+                                  </div>
+                                  <div class="mb-3">
+                                    <button type="button" class="btn btn-secondary add_skill_button">Add skill</button>
+                                  </div>
+                                  <hr/>
+                                  <div class="skills_list"></div>
                                 </div>
                               </div>
                             </div>
@@ -277,5 +298,6 @@
         <script src="Scripts/event_listeners.js"></script>
         <script src="Scripts/school_class.js"></script>
         <script src="Scripts/work_class.js"></script>
+        <script src="Scripts/skill_class.js"></script>
     </body>
 </html>

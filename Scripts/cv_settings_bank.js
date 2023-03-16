@@ -6,5 +6,6 @@ const cv_settings_bank = {
     media: document.getElementById('media_input').value,
 
     schools: [],
-    work_experience: []
+    work_experience: [],
+    skills: [],
 }

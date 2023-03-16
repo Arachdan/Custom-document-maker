@@ -3,7 +3,7 @@ const cv_phone_number_checkbox = document.getElementsByClassName('phone_number_c
 const cv_email_checkbox = document.getElementsByClassName('email_checkbox')[0];
 const cv_media_checkbox = document.getElementsByClassName('media_checkbox')[0];
 
-function cvPersonalInfoElementCheck(element_name) {
+function cvElementCheck(element_name) {
     if(document.getElementsByClassName(`${element_name}_checkbox`)[0].checked === true) return true;
     else return false;
 }
