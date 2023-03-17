@@ -8,4 +8,7 @@ const cv_settings_bank = {
     schools: [],
     work_experience: [],
     skills: [],
+    certificates: [],
+    hobbies_and_interests: [],
+    languages: []
 }

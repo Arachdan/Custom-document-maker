@@ -174,6 +174,149 @@ function addSkill() {
 
     document.getElementById('skill_name_input').value = '';
     document.getElementById('skill_level_input').value = '';
+    document.getElementById('skill_level_bar_range').value = 3;
+}
+
+function addCertificate() {
+    function bestowDeletingCertificateFunctionality() {
+        for(i = 0; i < cv_settings_bank.certificates.length; i++) {
+            let i_var = i;
+            const deletetion_range = 1;
+            document.getElementsByClassName('delete_certificate_button')[i].onclick = () => {
+                document.getElementsByClassName('certificate_list_item')[i_var].remove();
+                cv_settings_bank.certificates.splice(i_var, deletetion_range);
+    
+                bestowDeletingCertificateFunctionality();
+            };
+        }
+
+        canvas_obj.ctx.clearRect(0, 0, canvas_obj.width, canvas_obj.height);
+        canvas_obj.loadCVContent.all();
+    }
+
+    let certificate = new Certificate(
+        document.getElementById('certificate_name_input').value,
+        document.getElementById('certificate_institution_input').value,
+        document.getElementById('certificate_start_time_input').value,
+        document.getElementById('certificate_end_time_input').value
+    );
+
+    cv_settings_bank.certificates.push(certificate);
+
+    canvas_obj.reloadCVContent();
+
+    document.getElementsByClassName('certificates_list')[0].innerHTML = '';
+    for(i = 0; i < cv_settings_bank.certificates.length; i++) {
+        document.getElementsByClassName('certificates_list')[0].innerHTML += (`
+            <ul class="list-group list-group-horizontal certificate_list_item mb-1">
+                <li class="list-group-item w-75">
+                    <big>${cv_settings_bank.certificates[i].certificate_name}</big>
+                </li>
+                <li class="list-group-item w-25 delete_button_container">
+                    <button type="button" class="btn-close delete_certificate_button btn btn-danger" aria-label="Close"></button>
+                </li>
+            </ul>
+        `);
+    }
+
+    bestowDeletingCertificateFunctionality();
+
+    document.getElementById('certificate_name_input').value = '';
+    document.getElementById('certificate_institution_input').value = '';
+    document.getElementById('certificate_start_time_input').value = '';
+    document.getElementById('certificate_end_time_input').value = '';
+}
+
+function addHobby() {
+    function bestowDeletingHobbyFunctionality() {
+        for(i = 0; i < cv_settings_bank.hobbies_and_interests.length; i++) {
+            let i_var = i;
+            const deletetion_range = 1;
+            document.getElementsByClassName('delete_hobby_button')[i].onclick = () => {
+                document.getElementsByClassName('hobby_list_item')[i_var].remove();
+                cv_settings_bank.hobbies_and_interests.splice(i_var, deletetion_range);
+    
+                bestowDeletingHobbyFunctionality();
+            };
+        }
+
+        canvas_obj.ctx.clearRect(0, 0, canvas_obj.width, canvas_obj.height);
+        canvas_obj.loadCVContent.all();
+    }
+
+    let hobby = new Hobby(
+        document.getElementById('hobby_or_interest_name_input').value
+    );
+
+    cv_settings_bank.hobbies_and_interests.push(hobby);
+
+    canvas_obj.reloadCVContent();
+
+    document.getElementsByClassName('hobbies_and_interests_list')[0].innerHTML = '';
+    for(i = 0; i < cv_settings_bank.hobbies_and_interests.length; i++) {
+        document.getElementsByClassName('hobbies_and_interests_list')[0].innerHTML += (`
+            <ul class="list-group list-group-horizontal hobby_list_item mb-1">
+                <li class="list-group-item w-75">
+                    <big>${cv_settings_bank.hobbies_and_interests[i].hobby_name}</big>
+                </li>
+                <li class="list-group-item w-25 delete_button_container">
+                    <button type="button" class="btn-close delete_hobby_button btn btn-danger" aria-label="Close"></button>
+                </li>
+            </ul>
+        `);
+    }
+
+    bestowDeletingHobbyFunctionality();
+
+    document.getElementById('hobby_or_interest_name_input').value = '';
+}
+
+function addLanguage() {
+    function bestowDeletingLanguageFunctionality() {
+        for(i = 0; i < cv_settings_bank.languages.length; i++) {
+            let i_var = i;
+            const deletetion_range = 1;
+            document.getElementsByClassName('delete_language_button')[i].onclick = () => {
+                document.getElementsByClassName('language_list_item')[i_var].remove();
+                cv_settings_bank.languages.splice(i_var, deletetion_range);
+    
+                bestowDeletingLanguageFunctionality();
+            };
+        }
+
+        canvas_obj.ctx.clearRect(0, 0, canvas_obj.width, canvas_obj.height);
+        canvas_obj.loadCVContent.all();
+    }
+
+    let language = new Language(
+        document.getElementById('language_name_input').value,
+        document.getElementById('language_level_input').value,
+        document.getElementById('language_level_bar_range').value
+    );
+
+    cv_settings_bank.languages.push(language);
+
+    canvas_obj.reloadCVContent();
+
+    document.getElementsByClassName('languages_list')[0].innerHTML = '';
+    for(i = 0; i < cv_settings_bank.languages.length; i++) {
+        document.getElementsByClassName('languages_list')[0].innerHTML += (`
+            <ul class="list-group list-group-horizontal language_list_item mb-1">
+                <li class="list-group-item w-75">
+                    <big>${cv_settings_bank.languages[i].language_name}</big>
+                </li>
+                <li class="list-group-item w-25 delete_button_container">
+                    <button type="button" class="btn-close delete_language_button btn btn-danger" aria-label="Close"></button>
+                </li>
+            </ul>
+        `);
+    }
+
+    bestowDeletingLanguageFunctionality();
+
+    document.getElementById('language_name_input').value = '';
+    document.getElementById('language_level_input').value = '';
+    document.getElementById('language_level_bar_range').value = 3;
 }
 
 document.getElementById('name_and_lastname_input').addEventListener('input', updateNameAndLastnameOnCVCanvas);
@@ -203,3 +346,6 @@ function allowActivationAndDeactivationOfAModuleInCV(module_name) {
 document.getElementsByClassName('add_school_button')[0].addEventListener('click', addSchool);
 document.getElementsByClassName('add_work_button')[0].addEventListener('click', addWork);
 document.getElementsByClassName('add_skill_button')[0].addEventListener('click', addSkill);
+document.getElementsByClassName('add_certificate_button')[0].addEventListener('click', addCertificate);
+document.getElementsByClassName('add_hobby_or_interest_button')[0].addEventListener('click', addHobby);
+document.getElementsByClassName('add_language_button')[0].addEventListener('click', addLanguage);

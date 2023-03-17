@@ -5,6 +5,8 @@ const canvas_obj = new function() {
     this.width = this.canvas.width;
     this.height = this.canvas.height;
 
+    this.list_sign = '>)';
+
     this.setFont = (weight, style, size, family) => {
         this.ctx.font = `${weight} ${style} ${size}px ${family}`;
         this.font_size = size;
@@ -48,8 +50,14 @@ const canvas_obj = new function() {
             if(canvas_obj.ctx.measureText(`${label}: ${text}`).width < canvas_obj.width) {
                 canvas_obj.setFont('bold', 'italic', 30, 'Arial');
 
-                canvas_obj.ctx.fillText(`${label}: `, x, canvas_obj.y);
-                x += canvas_obj.ctx.measureText(`${label}: `).width;
+                if(label === 'list_sign') {
+                    canvas_obj.ctx.fillText(`${canvas_obj.list_sign} `, x, canvas_obj.y);
+                    x += canvas_obj.ctx.measureText(`${canvas_obj.list_sign} `).width;
+                }
+                else {
+                    canvas_obj.ctx.fillText(`${label}: `, x, canvas_obj.y);
+                    x += canvas_obj.ctx.measureText(`${label}: `).width;
+                }
 
                 canvas_obj.setFont('normal', 'normal', 30, 'Arial');
 
@@ -210,11 +218,60 @@ const canvas_obj = new function() {
             }
         },
 
+        certificates: () => {
+            if(cvModuleCheck('certificates')) {
+                this.setBreak();
+
+                this.printHeading('Certificates');
+
+                for(i = 0; i < cv_settings_bank.certificates.length; i++) {
+                    this.printText('Certificate name', cv_settings_bank.certificates[i].certificate_name);
+                    this.printText('Institution', cv_settings_bank.certificates[i].certificate_institution);
+                    if(cv_settings_bank.certificates[i].time !== 'none') this.printText('Start and end date', cv_settings_bank.certificates[i].time);
+
+                    if(i + 1 !== cv_settings_bank.certificates.length) this.setY();
+                }
+            }
+        },
+
+        hobbies_and_interests: () => {
+            if(cvModuleCheck('hobbies_and_interests')) {
+                this.setBreak();
+
+                this.printHeading('Hobbies and interests');
+
+                for(i = 0; i < cv_settings_bank.hobbies_and_interests.length; i++) {
+                    this.printText('list_sign', cv_settings_bank.hobbies_and_interests[i].hobby_name);
+
+                    if(i + 1 !== cv_settings_bank.hobbies_and_interests.length) this.setY();
+                }
+            }
+        },
+
+        languages: () => {
+            if(cvModuleCheck('languages')) {
+                this.setBreak();
+
+                this.printHeading('Languages');
+
+                for(i = 0; i < cv_settings_bank.languages.length; i++) {
+                    this.printText('Language name', cv_settings_bank.languages[i].language_name);
+                    if(cv_settings_bank.languages[i].language_level !== 'none') this.printText('Language level', cv_settings_bank.languages[i].language_level);
+                    if(cv_settings_bank.languages[i].language_level_bar !== 'none') this.printBarWithText('Language level bar', cv_settings_bank.languages[i].language_level_bar);
+
+                    if(i + 1 !== cv_settings_bank.languages.length) this.setY();
+                }
+            }
+        },
+
         all: () => {
             this.loadCVContent.personal_info();
             this.loadCVContent.education();
             this.loadCVContent.work_experience();
             this.loadCVContent.skills();
+            this.loadCVContent.certificates();
+            this.loadCVContent.hobbies_and_interests();
+            this.loadCVContent.languages();
         }
     };
 };

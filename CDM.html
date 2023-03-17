@@ -245,7 +245,37 @@
                               </h2>
                               <div id="certificates_collapse" class="accordion-collapse collapse" aria-labelledby="certificates_heading">
                                 <div class="accordion-body">
-                                    
+                                  <div class="mb-2">
+                                    <input type="checkbox" class="btn-check" id="certificates_check_button" checked autocomplete="off">
+                                    <label class="btn btn-outline-success" id="certificates_check_button_label" for="certificates_check_button">Active</label>
+                                  </div>
+                                  <hr/>
+                                  <div class="form-floating mb-2">
+                                    <input type="text" class="form-control certificate_name_input" id="certificate_name_input" placeholder="Certificate name">
+                                    <label for="certificate_name_input">Certificate name</label>
+                                  </div>
+                                  <div class="form-floating mb-2">
+                                    <input type="text" class="form-control certificate_institution_input" id="certificate_institution_input" placeholder="Institution">
+                                    <label for="certificate_institution_input">Institution</label>
+                                  </div>
+                                  <div class="input-group mb-2">
+                                    <div class="input-group-text">
+                                      <input class="form-check-input certificate_time_checkbox" type="checkbox" checked>
+                                     </div>
+                                    <div class="form-floating">
+                                      <input type="month" class="form-control certificate_time_input" id="certificate_start_time_input" placeholder="Start date">
+                                      <label for="certificate_time_input">Start date</label>
+                                    </div>
+                                    <div class="form-floating">
+                                      <input type="month" class="form-control certificate_time_input" id="certificate_end_time_input" placeholder="End date">
+                                      <label for="certificate_time_input">End date</label>
+                                    </div>
+                                  </div>
+                                  <div class="mb-3">
+                                    <button type="button" class="btn btn-secondary add_certificate_button">Add certificate</button>
+                                  </div>
+                                  <hr/>
+                                  <div class="certificates_list"></div>
                                 </div>
                               </div>
                             </div>
@@ -261,7 +291,20 @@
                               </h2>
                               <div id="hobbies_and_interests_collapse" class="accordion-collapse collapse" aria-labelledby="hobbies_and_interests_heading">
                                 <div class="accordion-body">
-                                    
+                                  <div class="mb-2">
+                                    <input type="checkbox" class="btn-check" id="hobbies_and_interests_check_button" checked autocomplete="off">
+                                    <label class="btn btn-outline-success" id="hobbies_and_interests_check_button_label" for="hobbies_and_interests_check_button">Active</label>
+                                  </div>
+                                  <hr/>
+                                  <div class="form-floating mb-2">
+                                    <input type="text" class="form-control hobby_or_interest_name_input" id="hobby_or_interest_name_input" placeholder="Hobby/Interest">
+                                    <label for="hobby_or_interest_name_input">Hobby/Interest</label>
+                                  </div>
+                                  <div class="mb-3">
+                                    <button type="button" class="btn btn-secondary add_hobby_or_interest_button">Add hobby/interest</button>
+                                  </div>
+                                  <hr/>
+                                  <div class="hobbies_and_interests_list"></div>
                                 </div>
                               </div>
                             </div>
@@ -277,7 +320,36 @@
                             </h2>
                             <div id="languages_collapse" class="accordion-collapse collapse" aria-labelledby="languages_heading">
                               <div class="accordion-body">
-                                  
+                                <div class="mb-2">
+                                  <input type="checkbox" class="btn-check" id="languages_check_button" checked autocomplete="off">
+                                  <label class="btn btn-outline-success" id="languages_check_button_label" for="languages_check_button">Active</label>
+                                </div>
+                                <hr/>
+                                <div class="form-floating mb-2">
+                                  <input type="text" class="form-control language_name_input" id="language_name_input" placeholder="Language">
+                                  <label for="language_name_input">Language</label>
+                                </div>
+                                <div class="input-group mb-2">
+                                  <div class="input-group-text">
+                                      <input class="form-check-input language_level_checkbox" type="checkbox" checked>
+                                  </div>
+                                  <div class="form-floating">
+                                      <input type="text" class="form-control language_level_input" id="language_level_input" placeholder="Language level">
+                                      <label for="language_level_input">Language level</label>
+                                  </div>
+                                </div>
+                                <div class="input-group mb-2">
+                                  <div class="input-group-text">
+                                    <input class="form-check-input language_level_bar_checkbox" type="checkbox" checked>
+                                   </div>
+                                  <span class="input-group-text w-75">Language level bar (1-5)</span>
+                                  <input type="range" class="form-range" min="1" max="5" value="3" id="language_level_bar_range">
+                                </div>
+                                <div class="mb-3">
+                                  <button type="button" class="btn btn-secondary add_language_button">Add language</button>
+                                </div>
+                                <hr/>
+                                <div class="languages_list"></div>
                               </div>
                             </div>
                           </div>
@@ -299,5 +371,8 @@
         <script src="Scripts/school_class.js"></script>
         <script src="Scripts/work_class.js"></script>
         <script src="Scripts/skill_class.js"></script>
+        <script src="Scripts/certificate_class.js"></script>
+        <script src="Scripts/hobby_class.js"></script>
+        <script src="Scripts/language_class.js"></script>
     </body>
 </html>

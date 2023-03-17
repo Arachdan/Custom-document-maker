@@ -16,3 +16,6 @@ function cvModuleCheck(module_name) {
 allowActivationAndDeactivationOfAModuleInCV('education');
 allowActivationAndDeactivationOfAModuleInCV('work_experience');
 allowActivationAndDeactivationOfAModuleInCV('skills');
+allowActivationAndDeactivationOfAModuleInCV('certificates');
+allowActivationAndDeactivationOfAModuleInCV('hobbies_and_interests');
+allowActivationAndDeactivationOfAModuleInCV('languages');
