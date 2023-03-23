@@ -7,11 +7,14 @@ const canvas_obj = new function() {
 
     this.list_sign = '>)';
 
+    this.normal_font_size = 18;
+    this.bigger_font_size = this.normal_font_size + 20;
+
     this.setFont = (weight, style, size, family) => {
         this.ctx.font = `${weight} ${style} ${size}px ${family}`;
         this.font_size = size;
     };
-    this.setFont('normal', 'normal', 30, 'Arial');
+    this.setFont('normal', 'normal', this.font_size, 'Arial');
 
     this.y = 0;
     this.y_break = 5;
@@ -30,11 +33,11 @@ const canvas_obj = new function() {
     this.printHeading = (heading) => {
         this.setY();
 
-        this.setFont('normal', 'normal', 50, 'Copperplate');
+        this.setFont('normal', 'normal', canvas_obj.bigger_font_size, 'Copperplate');
         
         this.ctx.fillText(heading, 10, this.y);
 
-        this.setFont('normal', 'normal', 30, 'Arial');
+        this.setFont('normal', 'normal', canvas_obj.normal_font_size, 'Arial');
 
         this.setY('small');
     }
@@ -48,7 +51,7 @@ const canvas_obj = new function() {
             let words = [];
 
             if(canvas_obj.ctx.measureText(`${label}: ${text}`).width < canvas_obj.width) {
-                canvas_obj.setFont('bold', 'italic', 30, 'Arial');
+                canvas_obj.setFont('bold', 'italic', canvas_obj.normal_font_size, 'Arial');
 
                 if(label === 'list_sign') {
                     canvas_obj.ctx.fillText(`${canvas_obj.list_sign} `, x, canvas_obj.y);
@@ -59,7 +62,7 @@ const canvas_obj = new function() {
                     x += canvas_obj.ctx.measureText(`${label}: `).width;
                 }
 
-                canvas_obj.setFont('normal', 'normal', 30, 'Arial');
+                canvas_obj.setFont('normal', 'normal', canvas_obj.normal_font_size, 'Arial');
 
                 canvas_obj.ctx.fillText(text, x, canvas_obj.y);
             }
@@ -78,11 +81,11 @@ const canvas_obj = new function() {
 
                 for(word_nr = 0; word_nr < words.length; word_nr++) {
                     if(start_of_printing === true) {
-                        canvas_obj.setFont('bold', 'italic', 30, 'Arial');
+                        canvas_obj.setFont('bold', 'italic', canvas_obj.normal_font_size, 'Arial');
                         canvas_obj.ctx.fillText(`${label}: `, x, canvas_obj.y);
                         start_of_printing = false;
                         x += canvas_obj.ctx.measureText(`${label}: `).width;
-                        canvas_obj.setFont('normal', 'normal', 30, 'Arial');
+                        canvas_obj.setFont('normal', 'normal', canvas_obj.normal_font_size, 'Arial');
                     }
 
                     if(x + canvas_obj.ctx.measureText(words[word_nr]).width + x_step >= canvas_obj.width) {
@@ -117,19 +120,19 @@ const canvas_obj = new function() {
 
         this.setY();
 
-        canvas_obj.setFont('bold', 'italic', 30, 'Arial');
+        canvas_obj.setFont('bold', 'italic', canvas_obj.normal_font_size, 'Arial');
 
         this.ctx.fillText(`${text}: `, x, this.y);
         x += canvas_obj.ctx.measureText(`${text}: `).width;
         
-        canvas_obj.setFont('normal', 'normal', 30, 'Arial');
+        canvas_obj.setFont('normal', 'normal', canvas_obj.normal_font_size, 'Arial');
 
-        const x_border_bar = x - 4;
-        const y_border_bar = this.y - 17;
-        const x_container_bar = x - 2;
-        const y_container_bar = this.y - 15;
-        const y_level_bar = this.y - 13;
-        const x_level_bar = x;
+        const x_border_bar = x;
+        const y_border_bar = this.y - 14;
+        const x_container_bar = x + 2;
+        const y_container_bar = this.y - 12;
+        const y_level_bar = this.y - 10;
+        const x_level_bar = x + 4;
 
 
         const border_bar_height = 18;
