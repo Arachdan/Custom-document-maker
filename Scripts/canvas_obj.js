@@ -10,6 +10,8 @@ const canvas_obj = new function() {
     this.normal_font_size = 18;
     this.bigger_font_size = this.normal_font_size + 20;
 
+    this.rodo_clause_text_in_english = 'I hereby consent to my personal data being processed for the purpose of considering my application for the vacancy.';
+
     this.setFont = (weight, style, size, family) => {
         this.ctx.font = `${weight} ${style} ${size}px ${family}`;
         this.font_size = size;
@@ -51,13 +53,12 @@ const canvas_obj = new function() {
             let words = [];
 
             if(canvas_obj.ctx.measureText(`${label}: ${text}`).width < canvas_obj.width) {
-                canvas_obj.setFont('bold', 'italic', canvas_obj.normal_font_size, 'Arial');
-
                 if(label === 'list_sign') {
                     canvas_obj.ctx.fillText(`${canvas_obj.list_sign} `, x, canvas_obj.y);
                     x += canvas_obj.ctx.measureText(`${canvas_obj.list_sign} `).width;
                 }
-                else {
+                else if(label !== '#none'){
+                    canvas_obj.setFont('bold', 'italic', canvas_obj.normal_font_size, 'Arial');
                     canvas_obj.ctx.fillText(`${label}: `, x, canvas_obj.y);
                     x += canvas_obj.ctx.measureText(`${label}: `).width;
                 }
@@ -81,10 +82,18 @@ const canvas_obj = new function() {
 
                 for(word_nr = 0; word_nr < words.length; word_nr++) {
                     if(start_of_printing === true) {
-                        canvas_obj.setFont('bold', 'italic', canvas_obj.normal_font_size, 'Arial');
-                        canvas_obj.ctx.fillText(`${label}: `, x, canvas_obj.y);
+
+                        if(label === 'list_sign') {
+                            canvas_obj.ctx.fillText(`${canvas_obj.list_sign} `, x, canvas_obj.y);
+                            x += canvas_obj.ctx.measureText(`${canvas_obj.list_sign} `).width;
+                        }
+                        else if(label !== '#none') {
+                            canvas_obj.setFont('bold', 'italic', canvas_obj.normal_font_size, 'Arial');
+                            canvas_obj.ctx.fillText(`${label}: `, x, canvas_obj.y);
+                            x += canvas_obj.ctx.measureText(`${label}: `).width;
+                        }
+                        
                         start_of_printing = false;
-                        x += canvas_obj.ctx.measureText(`${label}: `).width;
                         canvas_obj.setFont('normal', 'normal', canvas_obj.normal_font_size, 'Arial');
                     }
 
@@ -105,14 +114,8 @@ const canvas_obj = new function() {
             else alert('State: something went wrong...');
         }
 
-        if(label === '#none') {
-            this.setY();
-            this.ctx.fillText(text, x, this.y);
-        }
-        else {
-            this.setY();
-            textWidthCheckAndPrinting();
-        }
+        this.setY();
+        textWidthCheckAndPrinting();
     }
 
     this.printBarWithText = (text, bar_value) => {
@@ -267,6 +270,12 @@ const canvas_obj = new function() {
             }
         },
 
+        rodo_clause: () => {
+            this.setY();
+
+            this.printText('#none', this.rodo_clause_text_in_english);
+        },
+
         all: () => {
             this.loadCVContent.personal_info();
             this.loadCVContent.education();
@@ -275,6 +284,7 @@ const canvas_obj = new function() {
             this.loadCVContent.certificates();
             this.loadCVContent.hobbies_and_interests();
             this.loadCVContent.languages();
+            this.loadCVContent.rodo_clause();
         }
     };
 };
