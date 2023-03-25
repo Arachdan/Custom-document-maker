@@ -11,8 +11,6 @@ const canvas_obj = new function() {
     this.bigger_font_size = this.normal_font_size + 20;
 
     this.rodo_clause_text_in_english = 'I hereby consent to my personal data being processed for the purpose of considering my application for the vacancy.';
-
-    this.wrapped_text_structure = false;
     
     this.setFont = (weight, style, size, family) => {
         this.ctx.font = `${weight} ${style} ${size}px ${family}`;
