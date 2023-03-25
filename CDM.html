@@ -193,6 +193,52 @@
                         </div>
                     </div>
                     <div class="row mb-3">
+                      <div class="accordion">
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="certificates_heading">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#certificates_collapse" aria-expanded="true" aria-controls="certificates_collapse">
+                                <h3>Certificates</h3>
+                              </button>
+                            </h2>
+                            <div id="certificates_collapse" class="accordion-collapse collapse" aria-labelledby="certificates_heading">
+                              <div class="accordion-body">
+                                <div class="mb-2">
+                                  <input type="checkbox" class="btn-check" id="certificates_check_button" checked autocomplete="off">
+                                  <label class="btn btn-outline-success" id="certificates_check_button_label" for="certificates_check_button">Active</label>
+                                </div>
+                                <hr/>
+                                <div class="form-floating mb-2">
+                                  <input type="text" class="form-control certificate_name_input" id="certificate_name_input" placeholder="Certificate name">
+                                  <label for="certificate_name_input">Certificate name</label>
+                                </div>
+                                <div class="form-floating mb-2">
+                                  <input type="text" class="form-control certificate_institution_input" id="certificate_institution_input" placeholder="Institution">
+                                  <label for="certificate_institution_input">Institution</label>
+                                </div>
+                                <div class="input-group mb-2">
+                                  <div class="input-group-text">
+                                    <input class="form-check-input certificate_time_checkbox" type="checkbox" checked>
+                                   </div>
+                                  <div class="form-floating">
+                                    <input type="month" class="form-control certificate_time_input" id="certificate_start_time_input" placeholder="Start date">
+                                    <label for="certificate_time_input">Start date</label>
+                                  </div>
+                                  <div class="form-floating">
+                                    <input type="month" class="form-control certificate_time_input" id="certificate_end_time_input" placeholder="End date">
+                                    <label for="certificate_time_input">End date</label>
+                                  </div>
+                                </div>
+                                <div class="mb-3">
+                                  <button type="button" class="btn btn-secondary add_certificate_button">Add certificate</button>
+                                </div>
+                                <hr/>
+                                <div class="certificates_list"></div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="row mb-3">
                         <div class="accordion">
                             <div class="accordion-item">
                               <h2 class="accordion-header" id="skills_heading">
@@ -232,52 +278,6 @@
                                   </div>
                                   <hr/>
                                   <div class="skills_list"></div>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="accordion">
-                            <div class="accordion-item">
-                              <h2 class="accordion-header" id="certificates_heading">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#certificates_collapse" aria-expanded="true" aria-controls="certificates_collapse">
-                                  <h3>Certificates</h3>
-                                </button>
-                              </h2>
-                              <div id="certificates_collapse" class="accordion-collapse collapse" aria-labelledby="certificates_heading">
-                                <div class="accordion-body">
-                                  <div class="mb-2">
-                                    <input type="checkbox" class="btn-check" id="certificates_check_button" checked autocomplete="off">
-                                    <label class="btn btn-outline-success" id="certificates_check_button_label" for="certificates_check_button">Active</label>
-                                  </div>
-                                  <hr/>
-                                  <div class="form-floating mb-2">
-                                    <input type="text" class="form-control certificate_name_input" id="certificate_name_input" placeholder="Certificate name">
-                                    <label for="certificate_name_input">Certificate name</label>
-                                  </div>
-                                  <div class="form-floating mb-2">
-                                    <input type="text" class="form-control certificate_institution_input" id="certificate_institution_input" placeholder="Institution">
-                                    <label for="certificate_institution_input">Institution</label>
-                                  </div>
-                                  <div class="input-group mb-2">
-                                    <div class="input-group-text">
-                                      <input class="form-check-input certificate_time_checkbox" type="checkbox" checked>
-                                     </div>
-                                    <div class="form-floating">
-                                      <input type="month" class="form-control certificate_time_input" id="certificate_start_time_input" placeholder="Start date">
-                                      <label for="certificate_time_input">Start date</label>
-                                    </div>
-                                    <div class="form-floating">
-                                      <input type="month" class="form-control certificate_time_input" id="certificate_end_time_input" placeholder="End date">
-                                      <label for="certificate_time_input">End date</label>
-                                    </div>
-                                  </div>
-                                  <div class="mb-3">
-                                    <button type="button" class="btn btn-secondary add_certificate_button">Add certificate</button>
-                                  </div>
-                                  <hr/>
-                                  <div class="certificates_list"></div>
                                 </div>
                               </div>
                             </div>
