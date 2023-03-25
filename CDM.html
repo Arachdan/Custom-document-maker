@@ -1,12 +1,392 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Custom Document Maker</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Custom Document Maker</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+      <link rel="stylesheet" href="Style sheets\canvas.css">
+      <link rel="stylesheet" href="Style sheets\settings.css">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
     </head>
     <body>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="h2 text-center">
+                        <p>Choose the type of document you want to create</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div>
+                        <select class="form-select select_document_type">
+                            <option value="none" selected>Select</option>
+                            <option value="cv">CV</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="container">
+            <div class="row">
+                <div class="col-9 text-center">
+                    <canvas class="canvas inactive_canvas" width="920" height="1280">
+                        Your browser does not support the canvas element.
+                    </canvas>
+                </div>
+                <div class="col-3 text-center cv_settings inactive_cv_settings">
+                    <div class="row mb-3">
+                        <div class="accordion">
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="personal_info_heading">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#personal_info_collapse" aria-expanded="true" aria-controls="personal_info_collapse">
+                                  <h3>Personal info</h3>
+                                </button>
+                              </h2>
+                              <div id="personal_info_collapse" class="accordion-collapse collapse" aria-labelledby="personal_info_heading">
+                                <div class="accordion-body">
+                                    <div class="form-floating mb-2">
+                                        <input type="text" class="form-control name_and_lastname_input" id="name_and_lastname_input" placeholder="First name and last name">
+                                        <label for="name_and_lastname_input">First name and last name</label>
+                                    </div>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-text">
+                                            <input class="form-check-input professional_title_checkbox" type="checkbox" checked>
+                                        </div>
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control professional_title_input" id="professional_title_input" placeholder="Professional title">
+                                            <label for="professional_title_input">Professional title</label>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-text">
+                                            <input class="form-check-input phone_number_checkbox" type="checkbox" checked>
+                                        </div>
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control phone_number_input" id="phone_number_input" placeholder="Phone number">
+                                            <label for="phone_number_input">Phone number</label>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-text">
+                                            <input class="form-check-input email_checkbox" type="checkbox" checked>
+                                        </div>
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control email_input" id="email_input" placeholder="E-mail">
+                                            <label for="email_input">E-mail</label>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-2">
+                                      <div class="input-group-text">
+                                          <input class="form-check-input media_checkbox" type="checkbox" checked>
+                                      </div>
+                                      <div class="form-floating">
+                                          <input type="text" class="form-control media_input" id="media_input" placeholder="Media">
+                                          <label for="media_input">Media</label>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="accordion">
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="education_heading">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#education_collapse" aria-expanded="true" aria-controls="education_collapse">
+                                  <h3>Education</h3>
+                                </button>
+                              </h2>
+                              <div id="education_collapse" class="accordion-collapse collapse" aria-labelledby="education_heading">
+                                <div class="accordion-body">
+                                    <div class="mb-2">
+                                      <input type="checkbox" class="btn-check" id="education_check_button" checked autocomplete="off">
+                                      <label class="btn btn-outline-success" id="education_check_button_label" for="education_check_button">Active</label>
+                                    </div>
+                                    <hr/>
+                                    <div class="form-floating mb-2">
+                                      <input type="text" class="form-control school_name_input" id="school_name_input" placeholder="School/University name">
+                                      <label for="school_name_input">School/University name</label>
+                                    </div>
+                                    <div class="form-floating mb-2">
+                                      <input type="text" class="form-control school_city_input" id="school_city_input" placeholder="City">
+                                      <label for="school_city_input">City</label>
+                                    </div>
+                                    <div class="input-group mb-2">
+                                      <div class="form-floating">
+                                        <input type="month" class="form-control school_time_input" id="school_start_time_input" placeholder="Start date">
+                                        <label for="school_city_input">Start date</label>
+                                      </div>
+                                      <div class="form-floating">
+                                        <input type="month" class="form-control school_time_input" id="school_end_time_input" placeholder="End date">
+                                        <label for="school_city_input">End date</label>
+                                      </div>
+                                    </div>
+                                    <div class="form-floating mb-2">
+                                      <textarea class="form-control school_additional_info_input" placeholder="Additional info" id="school_additional_info_input"></textarea>
+                                      <label for="school_additional_info_input">Additional info</label>                                    
+                                    </div>
+                                    <div class="mb-3">
+                                      <button type="button" class="btn btn-secondary add_school_button">Add school</button>
+                                    </div>
+                                    <hr/>
+                                    <div class="schools_list"></div>                          
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="accordion">
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="work_experience_heading">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#work_experience_collapse" aria-expanded="true" aria-controls="work_experience_collapse">
+                                  <h3>Work experience</h3>
+                                </button>
+                              </h2>
+                              <div id="work_experience_collapse" class="accordion-collapse collapse" aria-labelledby="work_experience_heading">
+                                <div class="accordion-body">
+                                  <div class="mb-2">
+                                    <input type="checkbox" class="btn-check" id="work_experience_check_button" checked autocomplete="off">
+                                    <label class="btn btn-outline-success" id="work_experience_check_button_label" for="work_experience_check_button">Active</label>
+                                  </div>
+                                  <hr/>
+                                  <div class="form-floating mb-2">
+                                    <input type="text" class="form-control job_title_input" id="job_title_input" placeholder="Job title">
+                                    <label for="job_title_input">Job title</label>
+                                  </div>
+                                  <div class="form-floating mb-2">
+                                    <input type="text" class="form-control employer_input" id="employer_input" placeholder="Employer">
+                                    <label for="employer_input">Employer</label>
+                                  </div>
+                                  <div class="form-floating mb-2">
+                                    <input type="text" class="form-control work_city_input" id="work_city_input" placeholder="City">
+                                    <label for="work_city_input">City</label>
+                                  </div>
+                                  <div class="input-group mb-2">
+                                    <div class="form-floating">
+                                      <input type="month" class="form-control work_time_input" id="work_start_time_input" placeholder="Start date">
+                                      <label for="work_city_input">Start date</label>
+                                    </div>
+                                    <div class="form-floating">
+                                      <input type="month" class="form-control work_time_input" id="work_end_time_input" placeholder="End date">
+                                      <label for="work_city_input">End date</label>
+                                    </div>
+                                  </div>
+                                  <div class="form-floating mb-2">
+                                    <textarea class="form-control work_additional_info_input" placeholder="Additional info" id="work_additional_info_input"></textarea>
+                                    <label for="work_additional_info_input">Additional info</label>                                    
+                                  </div>
+                                  <div class="mb-3">
+                                    <button type="button" class="btn btn-secondary add_work_button">Add work</button>
+                                  </div>
+                                  <hr/>
+                                  <div class="works_list"></div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="accordion">
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="certificates_heading">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#certificates_collapse" aria-expanded="true" aria-controls="certificates_collapse">
+                                <h3>Certificates</h3>
+                              </button>
+                            </h2>
+                            <div id="certificates_collapse" class="accordion-collapse collapse" aria-labelledby="certificates_heading">
+                              <div class="accordion-body">
+                                <div class="mb-2">
+                                  <input type="checkbox" class="btn-check" id="certificates_check_button" checked autocomplete="off">
+                                  <label class="btn btn-outline-success" id="certificates_check_button_label" for="certificates_check_button">Active</label>
+                                </div>
+                                <hr/>
+                                <div class="form-floating mb-2">
+                                  <input type="text" class="form-control certificate_name_input" id="certificate_name_input" placeholder="Certificate name">
+                                  <label for="certificate_name_input">Certificate name</label>
+                                </div>
+                                <div class="form-floating mb-2">
+                                  <input type="text" class="form-control certificate_institution_input" id="certificate_institution_input" placeholder="Institution">
+                                  <label for="certificate_institution_input">Institution</label>
+                                </div>
+                                <div class="input-group mb-2">
+                                  <div class="input-group-text">
+                                    <input class="form-check-input certificate_time_checkbox" type="checkbox" checked>
+                                   </div>
+                                  <div class="form-floating">
+                                    <input type="month" class="form-control certificate_time_input" id="certificate_start_time_input" placeholder="Start date">
+                                    <label for="certificate_time_input">Start date</label>
+                                  </div>
+                                  <div class="form-floating">
+                                    <input type="month" class="form-control certificate_time_input" id="certificate_end_time_input" placeholder="End date">
+                                    <label for="certificate_time_input">End date</label>
+                                  </div>
+                                </div>
+                                <div class="mb-3">
+                                  <button type="button" class="btn btn-secondary add_certificate_button">Add certificate</button>
+                                </div>
+                                <hr/>
+                                <div class="certificates_list"></div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="accordion">
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="skills_heading">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#skills_collapse" aria-expanded="true" aria-controls="skills_collapse">
+                                  <h3>Skills</h3>
+                                </button>
+                              </h2>
+                              <div id="skills_collapse" class="accordion-collapse collapse" aria-labelledby="skills_heading">
+                                <div class="accordion-body">
+                                  <div class="mb-2">
+                                    <input type="checkbox" class="btn-check" id="skills_check_button" checked autocomplete="off">
+                                    <label class="btn btn-outline-success" id="skills_check_button_label" for="skills_check_button">Active</label>
+                                  </div>
+                                  <hr/>
+                                  <div class="form-floating mb-2">
+                                    <input type="text" class="form-control skill_name_input" id="skill_name_input" placeholder="Skill name">
+                                    <label for="skill_name_input">Skill name</label>
+                                  </div>
+                                  <div class="input-group mb-2">
+                                    <div class="input-group-text">
+                                        <input class="form-check-input skill_level_checkbox" type="checkbox" checked>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control skill_level_input" id="skill_level_input" placeholder="Skill level">
+                                        <label for="skill_level_input">Skill level</label>
+                                    </div>
+                                  </div>
+                                  <div class="input-group mb-2">
+                                    <div class="input-group-text">
+                                      <input class="form-check-input skill_level_bar_checkbox" type="checkbox" checked>
+                                     </div>
+                                    <span class="input-group-text w-75">Skill level bar (1-5)</span>
+                                    <input type="range" class="form-range" min="1" max="5" value="3" id="skill_level_bar_range">
+                                  </div>
+                                  <div class="mb-3">
+                                    <button type="button" class="btn btn-secondary add_skill_button">Add skill</button>
+                                  </div>
+                                  <hr/>
+                                  <div class="skills_list"></div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="accordion">
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="hobbies_and_interests_heading">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hobbies_and_interests_collapse" aria-expanded="true" aria-controls="hobbies_and_interests_collapse">
+                                  <h3>Hobbies and interests</h3>
+                                </button>
+                              </h2>
+                              <div id="hobbies_and_interests_collapse" class="accordion-collapse collapse" aria-labelledby="hobbies_and_interests_heading">
+                                <div class="accordion-body">
+                                  <div class="mb-2">
+                                    <input type="checkbox" class="btn-check" id="hobbies_and_interests_check_button" checked autocomplete="off">
+                                    <label class="btn btn-outline-success" id="hobbies_and_interests_check_button_label" for="hobbies_and_interests_check_button">Active</label>
+                                  </div>
+                                  <hr/>
+                                  <div class="form-floating mb-2">
+                                    <input type="text" class="form-control hobby_or_interest_name_input" id="hobby_or_interest_name_input" placeholder="Hobby/Interest">
+                                    <label for="hobby_or_interest_name_input">Hobby/Interest</label>
+                                  </div>
+                                  <div class="mb-3">
+                                    <button type="button" class="btn btn-secondary add_hobby_or_interest_button">Add hobby/interest</button>
+                                  </div>
+                                  <hr/>
+                                  <div class="hobbies_and_interests_list"></div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="accordion">
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="languages_heading">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#languages_collapse" aria-expanded="true" aria-controls="languages_collapse">
+                                <h3>Languages</h3>
+                              </button>
+                            </h2>
+                            <div id="languages_collapse" class="accordion-collapse collapse" aria-labelledby="languages_heading">
+                              <div class="accordion-body">
+                                <div class="mb-2">
+                                  <input type="checkbox" class="btn-check" id="languages_check_button" checked autocomplete="off">
+                                  <label class="btn btn-outline-success" id="languages_check_button_label" for="languages_check_button">Active</label>
+                                </div>
+                                <hr/>
+                                <div class="form-floating mb-2">
+                                  <input type="text" class="form-control language_name_input" id="language_name_input" placeholder="Language">
+                                  <label for="language_name_input">Language</label>
+                                </div>
+                                <div class="input-group mb-2">
+                                  <div class="input-group-text">
+                                      <input class="form-check-input language_level_checkbox" type="checkbox" checked>
+                                  </div>
+                                  <div class="form-floating">
+                                      <input type="text" class="form-control language_level_input" id="language_level_input" placeholder="Language level">
+                                      <label for="language_level_input">Language level</label>
+                                  </div>
+                                </div>
+                                <div class="input-group mb-2">
+                                  <div class="input-group-text">
+                                    <input class="form-check-input language_level_bar_checkbox" type="checkbox" checked>
+                                   </div>
+                                  <span class="input-group-text w-75">Language level bar (1-5)</span>
+                                  <input type="range" class="form-range" min="1" max="5" value="3" id="language_level_bar_range">
+                                </div>
+                                <div class="mb-3">
+                                  <button type="button" class="btn btn-secondary add_language_button">Add language</button>
+                                </div>
+                                <hr/>
+                                <div class="languages_list"></div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row progress mb-3" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar bg-info" style="width: 100%"></div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="mb-1">
+                      <button type="button" class="btn btn-primary w-100 preview_cv_button">Preview CV</button>
+                    </div>
+                    <div>
+                      <button class="btn btn-primary w-100 download_cv_button">Download CV</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="Scripts/canvas_obj.js"></script>
+        <script src="Scripts/cv_settings_bank.js"></script>
+        <script src="Scripts/activateCanvas_&_deactivateCanvas.js"></script>
+        <script src="Scripts/activateSettings_&_deactivateSettings.js"></script>
+        <script src="Scripts/cv_settings_events.js"></script>
+        <script src="Scripts/cv_check_functions.js"></script>
+        <script src="Scripts/showCanvas.js"></script>
+        <script src="Scripts/event_listeners.js"></script>
+        <script src="Scripts/school_class.js"></script>
+        <script src="Scripts/work_class.js"></script>
+        <script src="Scripts/skill_class.js"></script>
+        <script src="Scripts/certificate_class.js"></script>
+        <script src="Scripts/hobby_class.js"></script>
+        <script src="Scripts/language_class.js"></script>
+        <script src="Scripts/preview_document.js"></script>
+        <script src="Scripts/download_document.js"></script>
     </body>
 </html>

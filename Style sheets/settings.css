@@ -1,0 +1,11 @@
+.inactive_cv_settings {
+    display: none;
+}
+
+.active_cv_settings {
+    display: initial;
+}
+
+.delete_button_container {
+    background-color: #f75145;
+}
