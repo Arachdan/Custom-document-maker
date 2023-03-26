@@ -8,7 +8,7 @@ By intention, it works on computers.
 
 ### Installation
 
-Use the "Releases" tab and choose your wanted version.
+Use the *Releases* tab and choose your wanted version.
 
 Alternatively:
 
