@@ -26,7 +26,7 @@ Według intencji, działa on na komputerach.
 
 ### Instalacja
 
-Użyj zakładki *Releases* i wybierz wersję. 
+Użyj zakładki *Releases* i wybierz porządaną wersję. 
 
 Ewentualnie:
 
