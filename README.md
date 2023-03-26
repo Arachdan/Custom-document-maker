@@ -8,6 +8,10 @@ By intention, it works on computers.
 
 ### Installation
 
+Use the "Releases" tab and choose your wanted version.
+
+Alternatively:
+
 Press *<> Code* button, then *Download ZIP*.
 Downloaded file has to be unzipped.
 Unzipped folder contains a file of name *CDM.html*, which you'll use to access the **Custom document maker** program.
@@ -26,7 +30,7 @@ Według intencji, działa on na komputerach.
 
 ### Instalacja
 
-Użyj zakładki *Releases* i wybierz porządaną wersję. 
+Użyj zakładki *Releases* i wybierz pożądaną wersję. 
 
 Ewentualnie:
 
