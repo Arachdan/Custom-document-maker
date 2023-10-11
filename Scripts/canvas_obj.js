@@ -10,7 +10,7 @@ const canvas_obj = new function() {
     this.normal_font_size = 18;
     this.bigger_font_size = this.normal_font_size + 20;
 
-    this.rodo_clause_text_in_english = 'I hereby consent to my personal data being processed for the purpose of considering my application for the vacancy.';
+    this.rodo_clause = 'I hereby consent to my personal data being processed for the purpose of considering my application for the vacancy.'
     
     this.setFont = (weight, style, size, family) => {
         this.ctx.font = `${weight} ${style} ${size}px ${family}`;
@@ -253,8 +253,8 @@ const canvas_obj = new function() {
             this.printText('#none', cv_settings_bank.name_and_lastname);
             this.setY('small');
             
-            if(cvElementCheck('professional_title')) this.printText('Professional title', cv_settings_bank.professional_title);
-            if(cvElementCheck('phone_number')) this.printText('Phone number', cv_settings_bank.phone_nr);
+            if(cvElementCheck('professional_title')) this.printText(language_holder.professional_title_text, cv_settings_bank.professional_title);
+            if(cvElementCheck('phone_number')) this.printText(language_holder.phone_number_text, cv_settings_bank.phone_nr);
             if(cvElementCheck('email')) this.printText('E-mail', cv_settings_bank.email);
             if(cvElementCheck('media')) this.printText('Media', cv_settings_bank.media);
         },
@@ -265,13 +265,13 @@ const canvas_obj = new function() {
 
                 this.y_starting_point = this.y;
 
-                this.printHeading('Education');
+                this.printHeading(language_holder.education_text);
 
                 for(i = 0; i < cv_settings_bank.schools.length; i++) {
-                    this.printText('School/University name', cv_settings_bank.schools[i].name);
-                    this.printText('City', cv_settings_bank.schools[i].city);
-                    this.printText('Start and end date', cv_settings_bank.schools[i].time);
-                    this.printText('Additional info', cv_settings_bank.schools[i].additional_info);
+                    this.printText(language_holder.school_name_text, cv_settings_bank.schools[i].name);
+                    this.printText(language_holder.city_text, cv_settings_bank.schools[i].city);
+                    this.printText(language_holder.start_and_end_date_text, cv_settings_bank.schools[i].time);
+                    this.printText(language_holder.additional_info_text, cv_settings_bank.schools[i].additional_info);
 
                     if(i + 1 !== cv_settings_bank.schools.length) this.setY();
                 }
@@ -282,14 +282,14 @@ const canvas_obj = new function() {
             if(cvModuleCheck('work_experience')) {
                 this.setBreak();
 
-                this.printHeading('Work experience');
+                this.printHeading(language_holder.work_experience_text);
 
                 for(i = 0; i < cv_settings_bank.work_experience.length; i++) {
-                    this.printText('Job title', cv_settings_bank.work_experience[i].job_title);
-                    this.printText('Employer', cv_settings_bank.work_experience[i].employer);
-                    this.printText('City', cv_settings_bank.work_experience[i].city);
-                    this.printText('Start and end date', cv_settings_bank.work_experience[i].time);
-                    this.printText('Additional info', cv_settings_bank.work_experience[i].additional_info);
+                    this.printText(language_holder.job_title_text, cv_settings_bank.work_experience[i].job_title);
+                    this.printText(language_holder.employer_text, cv_settings_bank.work_experience[i].employer);
+                    this.printText(language_holder.city_text, cv_settings_bank.work_experience[i].city);
+                    this.printText(language_holder.start_and_end_date_text, cv_settings_bank.work_experience[i].time);
+                    this.printText(language_holder.additional_info_text, cv_settings_bank.work_experience[i].additional_info);
 
                     if(i + 1 !== cv_settings_bank.work_experience.length) this.setY();
                 }
@@ -300,12 +300,12 @@ const canvas_obj = new function() {
             if(cvModuleCheck('certificates')) {
                 this.setBreak();
 
-                this.printHeading('Certificates');
+                this.printHeading(language_holder.certificates_text);
 
                 for(i = 0; i < cv_settings_bank.certificates.length; i++) {
-                    this.printText('Certificate name', cv_settings_bank.certificates[i].certificate_name);
-                    this.printText('Institution', cv_settings_bank.certificates[i].certificate_institution);
-                    if(cv_settings_bank.certificates[i].time !== 'none') this.printText('Start and end date', cv_settings_bank.certificates[i].time);
+                    this.printText(language_holder.certificate_name_text, cv_settings_bank.certificates[i].certificate_name);
+                    this.printText(language_holder.certificate_institution_text, cv_settings_bank.certificates[i].certificate_institution);
+                    if(cv_settings_bank.certificates[i].time !== 'none') this.printText(language_holder.start_and_end_date_text, cv_settings_bank.certificates[i].time);
 
                     if(i + 1 !== cv_settings_bank.certificates.length) this.setY();
                 }
@@ -320,12 +320,12 @@ const canvas_obj = new function() {
 
                 this.setBreak('wrapped_first');
 
-                this.printHeading('Skills', 'wrapped');
+                this.printHeading(language_holder.skills_text, 'wrapped');
 
                 for(i = 0; i < cv_settings_bank.skills.length; i++, 'wrapped') {
-                    this.printText('Skill name', cv_settings_bank.skills[i].skill_name, 'wrapped');
-                    if(cv_settings_bank.skills[i].skill_level !== 'none') this.printText('Skill level', cv_settings_bank.skills[i].skill_level, 'wrapped');
-                    if(cv_settings_bank.skills[i].skill_level_bar !== 'none') this.printBarWithText('Skill level bar', cv_settings_bank.skills[i].skill_level_bar, 'wrapped');
+                    this.printText(language_holder.skill_name_text, cv_settings_bank.skills[i].skill_name, 'wrapped');
+                    if(cv_settings_bank.skills[i].skill_level !== 'none') this.printText(language_holder.skill_level_text, cv_settings_bank.skills[i].skill_level, 'wrapped');
+                    if(cv_settings_bank.skills[i].skill_level_bar !== 'none') this.printBarWithText(language_holder.skill_level_bar_text, cv_settings_bank.skills[i].skill_level_bar, 'wrapped');
 
                     if(i + 1 !== cv_settings_bank.skills.length) this.setY();
                 }
@@ -336,7 +336,7 @@ const canvas_obj = new function() {
             if(cvModuleCheck('hobbies_and_interests')) {
                 this.setBreak('wrapped');
 
-                this.printHeading('Hobbies and interests', 'wrapped');
+                this.printHeading(language_holder.hobbies_and_interests_text, 'wrapped');
 
                 for(i = 0; i < cv_settings_bank.hobbies_and_interests.length; i++) {
                     this.printText('list_sign', cv_settings_bank.hobbies_and_interests[i].hobby_name, 'wrapped');
@@ -350,12 +350,12 @@ const canvas_obj = new function() {
             if(cvModuleCheck('languages')) {
                 this.setBreak('wrapped');
 
-                this.printHeading('Languages', 'wrapped');
+                this.printHeading(language_holder.languages_text, 'wrapped');
 
                 for(i = 0; i < cv_settings_bank.languages.length; i++) {
-                    this.printText('Language name', cv_settings_bank.languages[i].language_name, 'wrapped');
-                    if(cv_settings_bank.languages[i].language_level !== 'none') this.printText('Language level', cv_settings_bank.languages[i].language_level, 'wrapped');
-                    if(cv_settings_bank.languages[i].language_level_bar !== 'none') this.printBarWithText('Language level bar', cv_settings_bank.languages[i].language_level_bar, 'wrapped');
+                    this.printText(language_holder.language_name_text, cv_settings_bank.languages[i].language_name, 'wrapped');
+                    if(cv_settings_bank.languages[i].language_level !== 'none') this.printText(language_holder.language_level_text, cv_settings_bank.languages[i].language_level, 'wrapped');
+                    if(cv_settings_bank.languages[i].language_level_bar !== 'none') this.printBarWithText(language_holder.language_level_bar_text, cv_settings_bank.languages[i].language_level_bar, 'wrapped');
 
                     if(i + 1 !== cv_settings_bank.languages.length) this.setY();
                 }
@@ -370,7 +370,7 @@ const canvas_obj = new function() {
 
             this.setY();
 
-            this.printRODOClause(this.rodo_clause_text_in_english);
+            this.printRODOClause(this.rodo_clause);
         },
 
         all: () => {

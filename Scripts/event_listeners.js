@@ -1,5 +1,7 @@
 document.getElementsByClassName('select_document_type')[0].addEventListener('change', showCanvas);
 
+document.getElementsByClassName('select_language')[0].addEventListener('change', chooseLanguage);
+
 cv_professional_title_checkbox.addEventListener('click', () => {
     canvas_obj.reloadCVContent();
 });
