@@ -35,7 +35,7 @@ Użyj zakładki *Releases* i wybierz pożądaną wersję.
 Ewentualnie:
 
 Wciśnij przycisk *<> Code*, a następnie *Download ZIP*.
-Odtrzymany plik należy wypakować.
+Otrzymany plik należy wypakować.
 W wypakowanym folderze znajduje się plik o nazwie *CDM.html*, którego używasz do korzystania z programu **Custom document maker**.
 
 ### Informacja o użytkowaniu
